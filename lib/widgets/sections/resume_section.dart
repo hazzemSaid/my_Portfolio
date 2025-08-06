@@ -18,8 +18,8 @@ class ResumeSection extends StatelessWidget {
         final fontSize = screenWidth < 768
             ? 24.0
             : screenWidth < 1024
-            ? 30.0
-            : 36.0;
+                ? 30.0
+                : 36.0;
         final subtitleFontSize = screenWidth < 768 ? 18.0 : 24.0;
 
         return Column(
@@ -146,14 +146,14 @@ class ResumeSection extends StatelessWidget {
         ),
         const SizedBox(height: 32),
         _buildTimelineItem(
-          'Auvnet',
+          'AUVNET',
           ' Software Engineer Intern',
           '2025 - Present',
           'Working on real-time mobile applications using Flutter and Node.js. Gained hands-on experience with Firebase, MongoDB, and RESTful APIs.',
         ),
         _buildTimelineItem(
-          'Software Development ',
           'freelance at Upwork & khamsat',
+          'Software Development ',
           '2024 - Present',
           'Developing real-time mobile apps using Flutter with Firebase and custom Node.js backends. Implemented features like real-time chat, location tracking, push notifications, and MongoDB data modeling.',
         ),
