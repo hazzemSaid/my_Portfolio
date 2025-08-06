@@ -2,7 +2,11 @@
 
 A beautiful dark-themed single-page portfolio application built with Flutter, inspired by Hazem Said's portfolio design. Features smooth scroll navigation between sections with a modern dark theme and pink accents.
 
-## 🎨 Design Features
+## � Live Demo
+
+Visit the live website: [https://hazzemsaid.github.io/my_Portfolio/](https://hazzemsaid.github.io/my_Portfolio/)
+
+## �🎨 Design Features
 
 - **Dark Theme**: Professional dark background with pink accent colors
 - **Single Page Application**: All content displayed on one page with smooth scrolling
@@ -177,7 +181,46 @@ static void _scrollToSection(GlobalKey key) {
 4. Run `flutter run -d chrome` for web development
 5. Or run `flutter run` for mobile development
 
-## 📦 Dependencies
+## � Deployment to GitHub Pages
+
+This project is configured for automatic deployment to GitHub Pages using GitHub Actions.
+
+### Automatic Deployment
+
+1. **Push to main branch**: Every push automatically triggers deployment
+2. **GitHub Actions**: Uses Flutter build action with web renderer
+3. **Base URL**: Configured for GitHub Pages subdirectory (`/my_Portfolio/`)
+4. **Live URL**: [https://hazzemsaid.github.io/my_Portfolio/](https://hazzemsaid.github.io/my_Portfolio/)
+
+### Manual Deployment
+
+To deploy manually:
+
+```bash
+# Build for web with correct base URL
+flutter build web --release --web-renderer html --base-href /my_Portfolio/
+
+# The built files will be in build/web/
+# Upload these files to your GitHub Pages or hosting service
+```
+
+### GitHub Pages Setup
+
+1. **Enable GitHub Pages** in repository settings
+2. **Set source** to "GitHub Actions"
+3. **Configure workflow** (already included in `.github/workflows/deploy.yml`)
+4. **Custom domain** (optional): Add CNAME file for custom domain
+
+### Build Configuration
+
+The deployment uses these optimizations:
+- **HTML Renderer**: Better compatibility across browsers
+- **Release Mode**: Optimized for production
+- **Tree Shaking**: Removes unused code
+- **Minification**: Reduces file sizes
+- **Base URL**: Proper routing for GitHub Pages subdirectory
+
+## �📦 Dependencies
 
 - `flutter`: ^3.8.1
 - `cupertino_icons`: ^1.0.8
