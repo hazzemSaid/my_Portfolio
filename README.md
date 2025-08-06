@@ -1,6 +1,11 @@
 # Hazem Said Portfolio - Flutter Single Page App
 
-A beautiful dark-themed single-page portfolio application built with Flutter, inspired by Hazem Said's portfolio design. Features smooth scroll navigation between sections with a modern dark theme and pink accents.
+A beautiful dark-themed single-page portfolio application built with Flutter, inspired by Hazem Said's portfolio design. Features smooth scroll navigation between sections ## 📦 Dependencies
+
+- `flutter`: SDK '>=3.5.0 <4.0.0'
+- `cupertino_icons`: ^1.0.8
+- `flutter_svg`: ^2.0.10+1
+- `google_fonts`: ^6.1.0 modern dark theme and pink accents.
 
 ## � Live Demo
 
