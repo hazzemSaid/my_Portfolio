@@ -4,8 +4,11 @@ A beautiful dark-themed single-page portfolio application built with Flutter, in
 
 - `flutter`: SDK '>=3.5.0 <4.0.0'
 - `cupertino_icons`: ^1.0.8
-- `flutter_svg`: ^2.0.10+1
-- `google_fonts`: ^6.1.0 modern dark theme and pink accents.
+- `flutter_svg`: ^1.1.6
+- `google_fonts`: ^4.0.0
+- `go_router`: ^12.0.0
+- `url_launcher`: ^6.1.14
+- `flutter_lints`: ^3.0.0 (dev dependency) modern dark theme and pink accents.
 
 ## � Live Demo
 
