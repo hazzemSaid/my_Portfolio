@@ -230,10 +230,26 @@ flutter build web --release --base-href /my_Portfolio/
 
 ### GitHub Pages Setup
 
-1. **Enable GitHub Pages** in repository settings
-2. **Set source** to "GitHub Actions"
+**IMPORTANT: Follow these steps in your GitHub repository:**
+
+1. **Enable GitHub Pages**:
+   - Go to your repository on GitHub
+   - Click **Settings** tab
+   - Scroll to **Pages** in the left sidebar
+   - Under **Source**, select **"GitHub Actions"**
+   - Save the settings
+
+2. **Set Workflow Permissions**:
+   - In **Settings** → **Actions** → **General**
+   - Under **Workflow permissions**, select **"Read and write permissions"**
+   - Check **"Allow GitHub Actions to create and approve pull requests"**
+   - Save the settings
+
 3. **Configure workflow** (already included in `.github/workflows/deploy.yml`)
 4. **Custom domain** (optional): Add CNAME file for custom domain
+
+**After setup, push your code and the site will be available at:**
+[https://hazzemsaid.github.io/my_Portfolio/](https://hazzemsaid.github.io/my_Portfolio/)
 
 ### Build Configuration
 
