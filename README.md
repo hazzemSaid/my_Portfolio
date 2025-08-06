@@ -1,5 +1,21 @@
 # Hazem Said Portfolio - Flutter Single Page App
 
+A beautiful dark-themed single-page portfolio application built with Flutter, inspired by Hazem Said's portfolio design. Features smooth scroll navigation between sections with a modern da## 📦 Dependencies
+
+- `flutter`: SDK '>=3.5.0 <4.0.0'
+- `cupertino_icons`: ^1.0.8
+- `flutter_svg`: ^1.1.6
+- `google_fonts`: ^4.0.0
+- `go_router`: ^12.0.0
+- `url_launcher`: ^6.1.14
+- `flutter_lints`: ^3.0.0 (dev dependency)me and pink accents.
+
+## 🌐 Live Demo
+
+Visit the live website: [https://hazzemsaid.github.io/my_Portfolio/](https://hazzemsaid.github.io/my_Portfolio/)
+
+## 🎨 Design Featuresfolio - Flutter Single Page App
+
 A beautiful dark-themed single-page portfolio application built with Flutter, inspired by Hazem Said's portfolio design. Features smooth scroll navigation between sections ## 📦 Dependencies
 
 - `flutter`: SDK '>=3.5.0 <4.0.0'
@@ -206,7 +222,7 @@ To deploy manually:
 
 ```bash
 # Build for web with correct base URL
-flutter build web --release --web-renderer html --base-href /my_Portfolio/
+flutter build web --release --base-href /my_Portfolio/
 
 # The built files will be in build/web/
 # Upload these files to your GitHub Pages or hosting service
@@ -222,11 +238,10 @@ flutter build web --release --web-renderer html --base-href /my_Portfolio/
 ### Build Configuration
 
 The deployment uses these optimizations:
-- **HTML Renderer**: Better compatibility across browsers
-- **Release Mode**: Optimized for production
-- **Tree Shaking**: Removes unused code
-- **Minification**: Reduces file sizes
+- **Release Mode**: Optimized for production with tree shaking and minification
 - **Base URL**: Proper routing for GitHub Pages subdirectory
+- **Web Optimization**: Automatic web-specific optimizations
+- **Asset Bundling**: Efficient asset loading and caching
 
 ## �📦 Dependencies
 

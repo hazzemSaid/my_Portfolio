@@ -89,8 +89,8 @@ class ContactSection extends StatelessWidget {
         final fontSize = screenWidth < 768
             ? 24.0
             : screenWidth < 1024
-            ? 30.0
-            : 36.0;
+                ? 30.0
+                : 36.0;
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,7 +117,7 @@ class ContactSection extends StatelessWidget {
                   TextSpan(
                     text: 'Next Projects',
                     style: TextStyle(
-                      color: Color(0xFFFF006E),
+                      color: const Color(0xFFFF006E),
                       fontSize: fontSize,
                       fontWeight: FontWeight.bold,
                     ),
@@ -189,7 +189,7 @@ class ContactSection extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: SvgPicture.asset(
           svgPath,
-          colorFilter: const ColorFilter.mode(Colors.grey, BlendMode.srcIn),
+          color: Colors.grey,
         ),
       ),
     );
@@ -258,12 +258,10 @@ class ContactSection extends StatelessWidget {
 
   Widget _buildSubmitButton(void Function()? onTap) {
     return GestureDetector(
-      onTap:
-          onTap ??
+      onTap: onTap ??
           () {
             // Handle submit action
           },
-
       child: Row(
         children: [
           Expanded(
