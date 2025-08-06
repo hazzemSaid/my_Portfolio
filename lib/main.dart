@@ -18,15 +18,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Hazem Said Portfolio',
       theme: ThemeData(
-        colorScheme: ColorScheme.dark(
+        colorScheme: const ColorScheme.dark(
           primary: const Color(0xFFFF006E), // Pink accent
           secondary: const Color(0xFFFF006E),
-          surface: const Color(0xFF1A1A1A), // Dark background
-          background: const Color(0xFF0A0A0A), // Very dark background
+          surface: const Color(0xFF1A1A1A), // Very dark background
           onPrimary: Colors.white,
           onSecondary: Colors.white,
           onSurface: Colors.white,
-          onBackground: Colors.white,
         ),
         useMaterial3: true,
         textTheme: GoogleFonts.dmSansTextTheme(ThemeData.dark().textTheme),
