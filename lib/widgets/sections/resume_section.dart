@@ -46,7 +46,7 @@ class ResumeSection extends StatelessWidget {
                   TextSpan(
                     text: 'Mobile & Backend Dev ',
                     style: TextStyle(
-                      color: Color(0xFFFF006E),
+                      color: const Color(0xFFFF006E),
                       fontSize: subtitleFontSize,
                       fontWeight: FontWeight.bold,
                     ),
@@ -146,10 +146,10 @@ class ResumeSection extends StatelessWidget {
         ),
         const SizedBox(height: 32),
         _buildTimelineItem(
-          'AUVNET',
-          ' Software Engineer Intern',
+          'Cyber Royale (AUVNET)',
+          'Software Engineer Intern',
           '2025 - Present',
-          'Working on real-time mobile applications using Flutter and Node.js. Gained hands-on experience with Firebase, MongoDB, and RESTful APIs.',
+          'Working on real-time mobile applications using Flutter and Node.js. Gained hands-on experience with Firebase, MongoDB, and RESTful APIs. Also, working on a real-time mobile application using Flutter and Node.js. Gained hands-on experience with Firebase, MongoDB, and RESTful APIs.',
         ),
         _buildTimelineItem(
           'freelance at Upwork & khamsat',

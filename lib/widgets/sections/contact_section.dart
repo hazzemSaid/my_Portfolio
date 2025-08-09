@@ -1,13 +1,87 @@
 // widgets/sections/contact_section.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart' as http;
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_icons.dart';
 import '../../core/route/mangement_route.dart';
 
-class ContactSection extends StatelessWidget {
+
+class ContactSection extends StatefulWidget {
   const ContactSection({super.key});
+
+  @override
+  State<ContactSection> createState() => _ContactSectionState();
+}
+
+class _ContactSectionState extends State<ContactSection> {
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _emailController = TextEditingController();
+  final _phoneController = TextEditingController();
+  final _subjectController = TextEditingController();
+  final _messageController = TextEditingController();
+  bool _isSubmitting = false;
+  String? _submitResult;
+
+  // Formspree endpoint
+  final String formspreeEndpoint = 'https://formspree.io/f/xgvzraek';
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _emailController.dispose();
+    _phoneController.dispose();
+    _subjectController.dispose();
+    _messageController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submitForm() async {
+    if (!_formKey.currentState!.validate()) return;
+    setState(() {
+      _isSubmitting = true;
+      _submitResult = null;
+    });
+    try {
+      final response = await http.post(
+        Uri.parse(formspreeEndpoint),
+        headers: {'Accept': 'application/json'},
+        body: {
+          'name': _nameController.text,
+          'email': _emailController.text,
+          'phone': _phoneController.text,
+          'subject': _subjectController.text,
+          'message': _messageController.text,
+        },
+      );
+      if (response.statusCode == 200) {
+        setState(() {
+          _submitResult = 'Message sent successfully!';
+        });
+        _formKey.currentState!.reset();
+        _nameController.clear();
+        _emailController.clear();
+        _phoneController.clear();
+        _subjectController.clear();
+        _messageController.clear();
+      } else {
+        setState(() {
+          _submitResult = 'Failed to send message. Please try again.';
+        });
+      }
+    } catch (e) {
+      setState(() {
+        _submitResult = 'Error occurred. Please try again.';
+      });
+    } finally {
+      setState(() {
+        _isSubmitting = false;
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -202,22 +276,39 @@ class ContactSection extends StatelessWidget {
         color: const Color(0xFF2A2A2A),
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Text(
-            'Send Message',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
+      child: Form(
+        key: _formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Send Message',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-          ),
-          const SizedBox(height: 24),
-          _buildFormFields(),
-          const SizedBox(height: 24),
-          _buildSubmitButton(() {}),
-        ],
+            const SizedBox(height: 24),
+            _buildFormFields(),
+            const SizedBox(height: 24),
+            if (_isSubmitting)
+              const Center(child: CircularProgressIndicator()),
+            if (_submitResult != null)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 16),
+                child: Text(
+                  _submitResult!,
+                  style: TextStyle(
+                    color: _submitResult == 'Message sent successfully!'
+                        ? Colors.green
+                        : Colors.red,
+                  ),
+                ),
+              ),
+            _buildSubmitButton(_submitForm),
+          ],
+        ),
       ),
     );
   }
@@ -225,22 +316,28 @@ class ContactSection extends StatelessWidget {
   Widget _buildFormFields() {
     return Column(
       children: [
-        _buildTextField('Full Name'),
+        _buildTextField('Full Name', controller: _nameController, validator: (v) => v == null || v.isEmpty ? 'Enter your name' : null),
         const SizedBox(height: 16),
-        _buildTextField('Email Address'),
+        _buildTextField('Email Address', controller: _emailController, validator: (v) => v == null || !v.contains('@') ? 'Enter a valid email' : null),
         const SizedBox(height: 16),
-        _buildTextField('Phone Number'),
+        _buildTextField('Phone Number', controller: _phoneController),
         const SizedBox(height: 16),
-        _buildTextField('Subject'),
+        _buildTextField('Subject', controller: _subjectController),
         const SizedBox(height: 16),
-        _buildTextField('Message', maxLines: 4),
+        _buildTextField('Message', controller: _messageController, maxLines: 4, validator: (v) => v == null || v.isEmpty ? 'Enter a message' : null),
       ],
     );
   }
 
-  Widget _buildTextField(String label, {int maxLines = 1}) {
-    return TextField(
+  Widget _buildTextField(String label, {
+    int maxLines = 1,
+    TextEditingController? controller,
+    String? Function(String?)? validator,
+  }) {
+    return TextFormField(
+      controller: controller,
       maxLines: maxLines,
+      validator: validator,
       decoration: InputDecoration(
         labelText: label,
         labelStyle: const TextStyle(color: Colors.grey),
@@ -258,17 +355,14 @@ class ContactSection extends StatelessWidget {
 
   Widget _buildSubmitButton(void Function()? onTap) {
     return GestureDetector(
-      onTap: onTap ??
-          () {
-            // Handle submit action
-          },
+      onTap: _isSubmitting ? null : onTap,
       child: Row(
         children: [
           Expanded(
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 16),
               decoration: BoxDecoration(
-                color: const Color(0xFFFF006E),
+                color: _isSubmitting ? Colors.grey : const Color(0xFFFF006E),
                 borderRadius: BorderRadius.circular(8),
               ),
               child: const Center(
@@ -286,7 +380,7 @@ class ContactSection extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFFFF006E),
+              color: _isSubmitting ? Colors.grey : const Color(0xFFFF006E),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(Icons.send, color: Colors.white),
